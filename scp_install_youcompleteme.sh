@@ -2,7 +2,7 @@
 ################ 工具安装 ##############################
 
 if [ "$SUCHP_HOME" = "" ]; then
-    SUCHP_HOME=~/suchp_familly
+    SUCHP_HOME=$HOME/suchp_familly
 fi
 
 SCP_PREFIX=$SUCHP_HOME
