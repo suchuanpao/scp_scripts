@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 if [ "$SUCHP_HOME" = "" ]; then
-   $SUCHP_HOME=$HOME/suchp_familly
+   SUCHP_HOME=$HOME/suchp_familly
 fi
 
 
@@ -25,6 +25,7 @@ SCP_DOWNLOAD_LLVM_CODE(){
 if [ ! -d $PATH_BUILD_LLVM ];then
 	mkdir $PATH_BUILD_LLVM
 fi
+
 cd $PATH_BUILD_LLVM
 
 cmake distclean;cmake -DCMAKE_BUILD_TYPE=Release $PATH_GITHUB_LLVM
