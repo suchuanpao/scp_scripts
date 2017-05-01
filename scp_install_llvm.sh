@@ -13,13 +13,13 @@ PATH_BUILD_LLVM=$PATH_GITHUB_LLVM/build
 
 SCP_DOWNLOAD_LLVM_CODE(){
 	sudo apt-get autoremove llvm
+	if [ ! -d $PATH_GITHUB_LLVM ];then
+		mkdir $PATH_GITHUB_LLVM
+	fi
 	echo "git clone https://github.com/llvm-mirror/llvm.git $PATH_GITHUB_LLVM"
 	git clone https://github.com/llvm-mirror/llvm.git $PATH_GITHUB_LLVM
 }
 
-if [ ! -d $PATH_GITHUB_LLVM ];then
-	mkdir $PATH_GITHUB_LLVM
-fi
 SCP_DOWNLOAD_LLVM_CODE
 
 if [ ! -d $PATH_BUILD_LLVM ];then

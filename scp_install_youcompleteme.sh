@@ -6,7 +6,7 @@ if [ "$SUCHP_HOME" = "" ]; then
 fi
 
 SCP_PREFIX=$SUCHP_HOME
-SCP_GITHUB=$SCP_PREFIX/github/
+SCP_GITHUB=$SCP_PREFIX/github
 SCP_BUILD=$SCP_PREFIX/build
 
 
@@ -16,9 +16,12 @@ PATH_BUILD_LIBCLANG=$PATH_GITHUB_LIBCLANG/build
 PATH_GITHUB_LLVM=$SCP_GITHUB/llvm
 PATH_BUILD_LLVM=$PATH_GITHUB_LLVM/build
 
+PATH_CODE_YOUCOMPLETEME=~/.vim/bundle/YouCompleteMe
+PATH_BUILD_YOUCOMPLETEME=$PATH_CODE_YOUCOMPLETEME/build
+
+FILE_LIBCLANG_FOR_YOUCOMPLETEME=$PATH_BUILD_LIBCLANG/lib/libclang.so
+
 # 编译youcompleteme 源码要使用的工具
-# cmake 要求最新版本
-scp_install_cmake.sh
 sudo apt-get install build-essential
 sudo apt-get install python-dev python3-dev
 # 支持c家族语言的工具安装
@@ -29,17 +32,19 @@ sudo apt-get install python-dev python3-dev
 ############## 编译支持c c++ 等c家族语言补全 #############
 #./install.py --clang-completer
 # 下载并编译llvm库和libclang库，并且指定编译目录
-scp_install_llvm.sh
-scp_install_libclang.sh
-############## 编译不支持c c++ 等c家族语言补全 ###########
-#./install.py
-############# 各类语言的补全支持 #########################
-#支持 c#         : 安装 "Mono"(c#的linux平台编译器，使c#在linux上运行)，并且在"./install "编译时添加"--omnisharp-completer"选项.
-#支持 Go         : 安装 "Go"(Go语言编译器)，并且在"./install "编译时添加"--gocode-completer"选项.
-#支持 TypeScript : 安装 "Node.js" 和 "npm"(Node.js的包管理工具),并且使用"npm install -g typescript"命令编译TypeScript SDK.
-#支持 JavaScript : 安装 "Node.js"(javascript的运行环境) 和 "npm"，并且在"./install"编译时添加"--tern-completer"选项.
-#支持 Rust       : 安装 "Rust"(编译器)，并且在"./install"编译时添加"--racer-completer"选项.
+# cmake 要求最新版本
+./scp_install_cmake.sh
+./scp_install_llvm.sh
+./scp_install_libclang.sh
 
-#支持全部语言    : 确保安装xbuild，go，tsserver，node，npm，rustc和cargo工具，并将安装路径添加到PATH中，然后运行"./install --all"
+cd $PATH_CODE_YOUCOMPLETEME
+rm -rf $PATH_BUILD_YOUCOMPLETEME
+mkdir $PATH_BUILD_YOUCOMPLETEME
+cd $PATH_BUILD_YOUCOMPLETEME
+echo "cmake -G "Unix Makefiles" -DPATH_TO_LLVM_ROOT=$PATH_BUILD_LLVM $PATH_CODE_YOUCOMPLETEME $PATH_CODE_YOUCOMPLETEME/third_party/ycmd/cpp -DEXTERNAL_LIBCLANG_PATH=$FILE_LIBCLANG_FOR_YOUCOMPLETEME"
+cmake -G "Unix Makefiles" -DPATH_TO_LLVM_ROOT=$PATH_BUILD_LLVM $PATH_CODE_YOUCOMPLETEME $PATH_CODE_YOUCOMPLETEME/third_party/ycmd/cpp -DEXTERNAL_LIBCLANG_PATH=$FILE_LIBCLANG_FOR_YOUCOMPLETEME
+echo "cmake --build $PATH_CODE_YOUCOMPLETEME --target ycm_core --config Release"
+cmake --build . --target ycm_core --config Release
+#make ycm_support_libs
+#./install.py --all
 
-cd ~/.vim/bundle/YouCompleteMe
