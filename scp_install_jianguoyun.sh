@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 
 if [ "$SUCHP_HOME" = "" ]; then
    SUCHP_HOME=$HOME/suchp_familly
@@ -22,11 +22,6 @@ SCP_DOWNLOAD_JIANGUOYUN(){
 	sudo apt-get install wget
 	wget -P $PATH_TOOLS_JIANGUOYUN -c $URL_JIANGUOYUN
 }
-SCP_INSTALL_JIANGUOYUN(){
-	sudo apt-get install libglib2.0-dev libgtk2.0-dev libnautilus-extension-dev gvfs-bin openjdk-7-jre-headless
-
-	cd $PATH_TOOLS_JIANGUOYUM
-}
 SCP_INSTALL_JIANGUOYUN_BY_SOURCE_CODE(){
 	sudo apt-get install libglib2.0-dev libgtk2.0-dev libnautilus-extension-dev gvfs-bin openjdk-7-jre-headless
 	
@@ -41,5 +36,7 @@ SCP_INSTALL_JIANGUOYUN_BY_SOURCE_CODE(){
 	nautilus -q
 	./runtime_bootstrap
 }
+
 SCP_INSTALL_JIANGUOYUN_BY_SOURCE_CODE
+
 exit 0

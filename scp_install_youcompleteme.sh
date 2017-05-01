@@ -2,7 +2,7 @@
 ################ 工具安装 ##############################
 
 if [ "$SUCHP_HOME" = "" ]; then
-    SUCHP_HOME=~/suchp_familly
+    SUCHP_HOME=$HOME/suchp_familly
 fi
 
 SCP_PREFIX=$SUCHP_HOME
@@ -47,4 +47,3 @@ echo "cmake --build $PATH_CODE_YOUCOMPLETEME --target ycm_core --config Release"
 cmake --build . --target ycm_core --config Release
 #make ycm_support_libs
 #./install.py --all
-

@@ -1,9 +1,8 @@
 #!/bin/bash
 
 if [ "$SUCHP_HOME" = "" ]; then
-   $SUCHP_HOME=~/suchp_familly
+   SUCHP_HOME=$HOME/suchp_familly
 fi
-
 
 SCP_PREFIX=$SUCHP_HOME
 SCP_GITHUB=$SCP_PREFIX/github
@@ -20,11 +19,12 @@ SCP_DOWNLOAD_LLVM_CODE(){
 	git clone https://github.com/llvm-mirror/llvm.git $PATH_GITHUB_LLVM
 }
 
-SCP_DOWNLOAD_LLVM_CODE
+#SCP_DOWNLOAD_LLVM_CODE
 
 if [ ! -d $PATH_BUILD_LLVM ];then
 	mkdir $PATH_BUILD_LLVM
 fi
+
 cd $PATH_BUILD_LLVM
 
 cmake distclean;cmake -DCMAKE_BUILD_TYPE=Release $PATH_GITHUB_LLVM
