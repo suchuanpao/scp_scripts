@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 if [ "$SUCHP_HOME" = "" ]; then
     SUCHP_HOME=$HOME/suchp_familly
 	export SUCHP_HOME=$SUCHP_HOME
