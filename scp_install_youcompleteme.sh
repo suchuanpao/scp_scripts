@@ -33,9 +33,9 @@ sudo apt-get install python-dev python3-dev
 #./install.py --clang-completer
 # 下载并编译llvm库和libclang库，并且指定编译目录
 # cmake 要求最新版本
-./scp_install_cmake.sh
-./scp_install_llvm.sh
-./scp_install_libclang.sh
+#./scp_install_cmake.sh
+#./scp_install_llvm.sh
+#./scp_install_libclang.sh
 
 cd $PATH_CODE_YOUCOMPLETEME
 rm -rf $PATH_BUILD_YOUCOMPLETEME

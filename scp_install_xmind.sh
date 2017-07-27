@@ -1,0 +1,41 @@
+#!/bin/bash
+
+SCP_CREATE_DIR(){
+    DIR=$1
+    if [ "$DIR" == "" ];then
+        exit 1
+    fi
+    mkdir -p $DIR
+}
+
+if [ "$SUCHP_HOME" = "" ]; then
+    SUCHP_HOME=$HOME/suchp_familly
+fi
+
+SCP_PREFIX=$SUCHP_HOME
+SCP_CREATE_DIR $SCP_PREFIX
+SCP_YUM=$SCP_PREFIX/yum
+SCP_CREATE_DIR $SCP_YUM
+SCP_YUM_ENV=$SCP_YUM/env
+SCP_CREATE_DIR $SCP_YUM_ENV
+SCP_YUM_SCRIPTS=$SCP_YUM/scripts
+SCP_CREATE_DIR $SCP_YUM_SCRIPTS
+SCP_YUM_CODE=$SCP_YUM/code
+SCP_CREATE_DIR $SCP_YUM_CODE
+SCP_GITHUB=$SCP_PREFIX/github
+SCP_CREATE_DIR $SCP_GITHUB
+SCP_TOOLS=$SCP_PREFIX/tools
+SCP_CREATE_DIR $SCP_TOOLS
+
+PATH_GITHUB_XMIND=$SCP_GITHUB/xmind
+if [ -d $PATH_GITHUB_XMIND ];then
+	cd $PATH_GITHUB_XMIND
+	git pull
+else
+	mkdir -p $PATH_GITHUB_XMIND
+	cd $PATH_GITHUB_XMIND
+	git clone https://github.com/xmindltd/xmind.git $PATH_GITHUB_XMIND
+fi
+
+
+exit 0

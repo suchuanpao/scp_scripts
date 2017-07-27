@@ -24,7 +24,7 @@ SCP_DOWNLOAD_JIANGUOYUN(){
 }
 SCP_INSTALL_JIANGUOYUN_BY_SOURCE_CODE(){
 	sudo apt-get install libglib2.0-dev libgtk2.0-dev libnautilus-extension-dev gvfs-bin openjdk-7-jre-headless
-	
+
 	wget -P $PATH_TOOLS_JIANGUOYUN -c http://www.jianguoyun.com/static/exe/installer/nutstore_linux_src_installer.tar.gz
 
 	cd $PATH_TOOLS_JIANGUOYUN
