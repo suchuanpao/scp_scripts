@@ -3,19 +3,22 @@
 if [ "$SUCHP_HOME" = "" ]; then
    SUCHP_HOME=$HOME/suchp_familly
 fi
-if [ ! -d $SUCHP_HOME ]; then
-   exit 1
-fi
+mkdir -p $SUCHP_HOME
 SCP_PREFIX=$SUCHP_HOME
+mkdir -p $SCP_PREFIX
 SCP_YUM=$SCP_PREFIX/yum
+mkdir -p $SCP_YUM
 SCP_YUM_ENV=$SCP_YUM/env
+mkdir -p $SCP_YUM_ENV
 SCP_GITHUB=$SCP_PREFIX/github
+mkdir -p $SCP_GITHUB
 SCP_TOOLS=$SCP_PREFIX/tools
+mkdir -p $SCP_TOOLS
 
 PATH_TOOLS_JIANGUOYUN=$SCP_TOOLS/jianguoyun
 
 rm -rf $PATH_TOOLS_JIANGUOYUN
-mkdir $PATH_TOOLS_JIANGUOYUN
+mkdir -p $PATH_TOOLS_JIANGUOYUN
 
 SCP_DOWNLOAD_JIANGUOYUN(){
 	URL_JIANGUOYUN=`./scp_crawurl_jianguoyun.sh`
